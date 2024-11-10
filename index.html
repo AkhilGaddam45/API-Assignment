@@ -1,13 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
-    <script src="index.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instagram Posts</title>
+  <style>
+    /* Basic styling */
+    .post-container {
+      width: 300px;
+      margin: 0 auto;
+    }
+    .post {
+      border: 1px solid #ddd;
+      padding: 16px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .post img {
+      width: 100%;
+      height: auto;
+      max-height: 200px;
+    }
+    .post-username {
+      font-weight: bold;
+      margin-top: 8px;
+    }
+    .post-caption {
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
 </head>
 <body>
-    <h2>Instagram API Webpage</h2>
+  <div class="post-container" id="postContainer"></div>
+
+  <script>
+    // Mock data for Instagram posts
+    const mockInstagramPosts = [
+      {
+        id: "1",
+        username: "nature_lover",
+        media_url: "https://cdn.pixabay.com/photo/2016/11/02/11/08/monk-1791113_640.jpg",
+        caption: "Enjoying the peaceful vibes of the forest 🌲 #NatureLover",
+        timestamp: "2024-11-09T08:30:00Z"
+      },
+      {
+        id: "2",
+        username: "city_explorer",
+        media_url: "https://cdn.pixabay.com/photo/2023/02/07/19/53/mountains-7774999_640.jpg",
+        caption: "Wandering through the city streets 🌆 #CityLife",
+        timestamp: "2024-11-09T12:15:00Z"
+      },
+      {
+        id: "3",
+        username: "foodie_jane",
+        media_url: "https://cdn.pixabay.com/photo/2023/05/25/10/35/bridge-8016809_640.jpg",
+        caption: "Brunch at my favorite cafe 🥐☕️ #Foodie",
+        timestamp: "2024-11-09T15:45:00Z"
+      },
+      {
+        id: "4",
+        username: "travel_guru",
+        media_url: "https://cdn.pixabay.com/photo/2022/06/07/16/22/drift-7248723_640.jpg",
+        caption: "Sunset by the beach is unbeatable 🌅 #TravelLife",
+        timestamp: "2024-11-10T18:30:00Z"
+      }
+    ];
+
+    const postContainer = document.getElementById('postContainer');
+
+    mockInstagramPosts.forEach(post => {
+      // Create post elements
+      const postDiv = document.createElement('div');
+      postDiv.className = 'post';
+
+      const img = document.createElement('img');
+      img.src = post.media_url;
+      img.alt = 'Post Image';
+
+      const usernameDiv = document.createElement('div');
+      usernameDiv.className = 'post-username';
+      usernameDiv.textContent = post.username;
+
+      const captionDiv = document.createElement('div');
+      captionDiv.className = 'post-caption';
+      captionDiv.textContent = post.caption;
+
+      const timestampDiv = document.createElement('div');
+      timestampDiv.className = 'post-timestamp';
+      timestampDiv.textContent = new Date(post.timestamp).toLocaleString();
+
+      // Append elements to postDiv
+      postDiv.appendChild(img);
+      postDiv.appendChild(usernameDiv);
+      postDiv.appendChild(captionDiv);
+      postDiv.appendChild(timestampDiv);
+
+      // Append postDiv to container
+      postContainer.appendChild(postDiv);
+    });
+  </script>
 </body>
 </html>
